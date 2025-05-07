@@ -23,7 +23,7 @@ export class NoAuthGuard {
       // Check for errors in the response, such as 'authorized access'
       if (response.email) {
         console.log('Utilisateur connecté avec un token valide');
-        await this.router.navigate([APP_ROUTES.CHAT]);
+        await this.router.navigate([APP_ROUTES.HOME]);
         return false;
       }
 

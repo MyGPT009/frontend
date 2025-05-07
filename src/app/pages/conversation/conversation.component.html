@@ -1,16 +1,16 @@
-<div class="chat-wrapper">
-  <div class="chat-messages">
-    <div *ngFor="let msg of messages" [ngClass]="msg.role" class="message">
+<section class="message-section">
+  <div class="messages-list">
+    <div *ngFor="let msg of messages" class="message">
       <div class="bubble">
         <div class="text">{{ msg.content }}</div>
       </div>
-    </div>
-    <div *ngIf="loading" class="message model">
-      <div class="bubble typing">L'IA répond...</div>
+      <div *ngIf="msg.aiResponse" class="message model">
+        <div class="bubble">{{ msg.aiResponse }}</div>
+      </div>
     </div>
   </div>
 
-  <div class="chat-input">
+  <div class="message-input">
     <textarea
       [(ngModel)]="userInput"
       (keydown.enter)="sendMessage(); $event.preventDefault();"
@@ -19,4 +19,4 @@
     ></textarea>
     <button (click)="sendMessage()" [disabled]="loading || !userInput.trim()">Envoyer</button>
   </div>
-</div>
+</section>

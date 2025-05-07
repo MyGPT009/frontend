@@ -3,7 +3,11 @@ export const APP_ROUTES = {
     REGISTER: 'auth/register',
     LOGIN: 'auth/login',
   },
-  CHAT: '',
+  HOME: '',
+  CONVERSATION: {
+    ID: 'conversation/:id',
+    CREATE: 'channel/create',
+  },
   SETTING: 'setting',
   PROFILE: 'profile',
   NOT_FOUND: '**',

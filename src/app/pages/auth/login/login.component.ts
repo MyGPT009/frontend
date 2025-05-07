@@ -51,6 +51,6 @@ export class LoginComponent implements OnInit {
   }
 
   goToHome() {
-    this.router.navigate([APP_ROUTES.CHAT]);
+    this.router.navigate([APP_ROUTES.HOME]);
   }
 }
