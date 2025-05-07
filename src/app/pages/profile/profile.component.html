@@ -1,1 +1,10 @@
-<p>profile works!</p>
+<section class="profile">
+  <div class="profile">
+    <div class="infos" *ngIf="auth">
+      <h2>{{ auth.name }}</h2>
+      <h2>{{ auth.email }}</h2>
+    </div>
+    <button type="button" (click)="logout()">Logout</button>
+
+  </div>
+</section>

@@ -1,1 +1,21 @@
-<p>login works!</p>
+<section class="login">
+  <div class="login-container">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="text" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" formControlName="password"
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="loginForm.invalid">Submit</button>
+          <button type="button" (click)="goToRegister()">Go to Register</button>
+        </div>
+      </form>
+    </div>
+</section>

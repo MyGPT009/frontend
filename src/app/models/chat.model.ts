@@ -1,13 +1,13 @@
-export interface Message {
+export interface MessageI {
   id: string;
   role: 'user' | 'ai';
   content: string;
   timestamp: Date;
 }
 
-export interface Conversation {
+export interface ConversationI {
   id: string;
   title: string;
   createdAt: Date;
-  messages: Message[];
+  messages: MessageI[];
 }

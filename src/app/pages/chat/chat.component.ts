@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Message } from '../../models/chat.model';
+import { MessageI } from '../../models/chat.model';
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +15,7 @@ import { Message } from '../../models/chat.model';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent {
-  messages: Message[] = [];
+  messages: MessageI[] = [];
   userInput: string = '';
   loading: boolean = false;
 
