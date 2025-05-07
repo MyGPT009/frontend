@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-color: #121212;
+  --user-bubble: #1e88e5;
+  --model-bubble: #2e2e2e;
+  --text-color: #e0e0e0;
+  --input-bg: #1f1f1f;
+  --border-color: #333;
+  --button-bg: #1e88e5;
+  --button-disabled-bg: #444;
+}

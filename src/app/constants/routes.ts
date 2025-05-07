@@ -3,7 +3,7 @@ export const APP_ROUTES = {
     REGISTER: 'auth/register',
     LOGIN: 'auth/login',
   },
-  HOME: '',
+  CHAT: '',
   SETTING: 'setting',
   PROFILE: 'profile',
   NOT_FOUND: '**',
