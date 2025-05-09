@@ -15,7 +15,6 @@ body {
   --scrollbar-color: #1e88e5;
 }
 
-
 /* Webkit scrollbar for Chrome, Safari, and Edge */
 ::-webkit-scrollbar {
   width: 8px;

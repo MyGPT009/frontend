@@ -1,17 +1,30 @@
 <div class="desktop-navigation">
   <div class="button-navigation">
-    <button class="nav-button" (click)="goToHome()">
+    <button class="nav-button" [class.active]="isActiveRoute(APP_ROUTES.HOME)" (click)="goToHome()">
       Home
     </button>
-    <button class="nav-button" (click)="goToSetting()">
+    <button class="nav-button" [class.active]="isActiveRoute(APP_ROUTES.SETTING)" (click)="goToSetting()">
       Setting
     </button>
-    <button class="nav-button" (click)="goToProfile()">
+    <button class="nav-button" [class.active]="isActiveRoute(APP_ROUTES.PROFILE)" (click)="goToProfile()">
       Profile
     </button>
   </div>
 
-<!--  <div class="conversation-list">-->
+  <div class="conversation-list" *ngIf="!loading; else loadingTemplate">
+    <div *ngIf="conversations.length === 0">Aucune conversation disponible.</div>
+    <ul *ngIf="conversations.length > 0">
+      <li
+        *ngFor="let conv of conversations"
+        (click)="goToConversation(conv.id!)"
+        [class.active]="isActiveRoute('conversation/' + conv.id)"
+      >
+        <strong>{{ conv.title }}</strong>
+      </li>
+    </ul>
+  </div>
 
-<!--  </div>-->
+  <ng-template #loadingTemplate>
+    <p>Chargement des conversations...</p>
+  </ng-template>
 </div>
