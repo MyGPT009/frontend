@@ -12,7 +12,10 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
-  sendMessage(conversationId: string, message: Partial<MessageI>): Observable<MessageI> {
+  index(conversationId: string): Observable<MessageI[]> {
+    return this.http.get<MessageI[]>(`${this.apiUrl}/conversations/${conversationId}`);
+  }
+  send(conversationId: string, message: Partial<MessageI>): Observable<MessageI> {
     return this.http.post<MessageI>(`${this.apiUrl}/conversations/${conversationId}/send`, message);
   }
 }

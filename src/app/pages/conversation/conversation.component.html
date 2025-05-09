@@ -1,11 +1,18 @@
 <section class="message-section">
-  <div class="messages-list">
-    <div *ngFor="let msg of messages" class="message">
-      <div class="bubble">
-        <div class="text">{{ msg.content }}</div>
+  <div #messageList class="messages-list">
+    <div *ngFor="let msg of messages">
+      <!-- Message de l'utilisateur -->
+      <div class="message user">
+        <div class="bubble">
+          <div class="text">{{ msg.content }}</div>
+        </div>
       </div>
+
+      <!-- Réponse de l'IA (si présente) -->
       <div *ngIf="msg.aiResponse" class="message model">
-        <div class="bubble">{{ msg.aiResponse }}</div>
+        <div class="bubble">
+          <div class="text">{{ msg.aiResponse }}</div>
+        </div>
       </div>
     </div>
   </div>
