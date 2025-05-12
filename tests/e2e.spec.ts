@@ -42,6 +42,29 @@ test.describe('Conversation', () => {
     await setupTestUser(browser);
   });
 
+  test('should create a new conversation', async () => {
+    await login(page, testEmail, testPassword);
+
+    await page.goto('http://localhost:4200/conversation');
+
+    const newConvButton = page.locator('button.new-conv-button');
+    await expect(newConvButton).toBeEnabled();
+
+    const initialConversations = await page.locator('.conversation-list ul li').count();
+
+    await newConvButton.click();
+
+    await page.waitForURL(/\/conversation\/\d+$/);
+
+    const textarea = page.locator('textarea[placeholder="Écrivez quelque chose..."]');
+    await expect(textarea).toBeVisible();
+
+    await page.goto('http://localhost:4200/conversation');
+    const updatedConversations = await page.locator('.conversation-list ul li').count();
+
+    expect(updatedConversations).toBeGreaterThan(initialConversations);
+  });
+
   test('should send a message and display both user and AI responses', async () => {
     await login(page, testEmail, testPassword);
 
