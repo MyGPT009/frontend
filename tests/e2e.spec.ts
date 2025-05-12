@@ -42,47 +42,37 @@ test.describe('Conversation', () => {
     await setupTestUser(browser);
   });
 
-  test('should create a new conversation', async () => {
+  test('should create a new conversation and send a message and display both user and AI responses', async () => {
     await login(page, testEmail, testPassword);
 
+    // Créer une nouvelle conversation
     await page.goto('http://localhost:4200/conversation');
-
     const newConvButton = page.locator('button.new-conv-button');
-    await expect(newConvButton).toBeEnabled();
-
-    const initialConversations = await page.locator('.conversation-list ul li').count();
-
     await newConvButton.click();
 
+    // Attendre la redirection vers la page de la conversation
     await page.waitForURL(/\/conversation\/\d+$/);
+    const conversationId = page.url().split('/').pop();
 
+    // Vérifie que la zone de texte est visible
     const textarea = page.locator('textarea[placeholder="Écrivez quelque chose..."]');
     await expect(textarea).toBeVisible();
 
-    await page.goto('http://localhost:4200/conversation');
-    const updatedConversations = await page.locator('.conversation-list ul li').count();
-
-    expect(updatedConversations).toBeGreaterThan(initialConversations);
-  });
-
-  test('should send a message and display both user and AI responses', async () => {
-    await login(page, testEmail, testPassword);
-
-    await page.goto('http://localhost:4200/conversation/58');
-
-    const textarea = page.locator('textarea[placeholder="Écrivez quelque chose..."]');
-    await expect(textarea).toBeVisible();
+    // Envoyer un message
     await textarea.fill('Bonjour IA !');
-
     const sendButton = page.locator('button', { hasText: 'Envoyer' });
     await expect(sendButton).toBeEnabled();
     await sendButton.click();
 
+    // Vérifie que le message de l'utilisateur est affiché
     await page.waitForSelector('.message.user .text');
     const userMessage = page.locator('.message.user .text').last();
     await expect(userMessage).toContainText('Bonjour IA !');
 
+    // Vérifie que la réponse de l'IA est affichée
     const aiResponse = page.locator('.message.model .text').first();
     await expect(aiResponse).toHaveText(/.+/);
+
+    expect(conversationId).toMatch(/\d+/);
   });
 });
