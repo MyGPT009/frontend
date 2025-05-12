@@ -24,7 +24,24 @@ export class DesktopComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadConversation(); // Charge les messages existants
+    this.loadConversation();
+  }
+
+  startNewConversation(): void {
+    this.loading = true;
+    this.conversationService.new().subscribe({
+      next: (newConversation: ConversationI) => {
+        this.loading = false;
+        this.conversations.unshift(newConversation); // Optionnel : ajout immédiat à la liste
+        this.router.navigate([
+          APP_ROUTES.CONVERSATION.ID.replace(':id', String(newConversation.id)),
+        ]);
+      },
+      error: (error) => {
+        console.error('Erreur lors de la création de la nouvelle conversation :', error);
+        this.loading = false;
+      }
+    });
   }
 
   loadConversation() {

@@ -15,4 +15,8 @@ export class ConversationService {
   index(): Observable<ConversationI[]> {
     return this.http.get<ConversationI[]>(`${this.apiUrl}`);
   }
+
+  new(): Observable<ConversationI> {
+    return this.http.post<ConversationI>(`${this.apiUrl}/new`, {});
+  }
 }

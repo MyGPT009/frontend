@@ -9,6 +9,10 @@
     <button class="nav-button" [class.active]="isActiveRoute(APP_ROUTES.PROFILE)" (click)="goToProfile()">
       Profile
     </button>
+
+    <button class="nav-button new-conv-button" (click)="startNewConversation()" [disabled]="loading">
+      + New conversation
+    </button>
   </div>
 
   <div class="conversation-list" *ngIf="!loading; else loadingTemplate">
